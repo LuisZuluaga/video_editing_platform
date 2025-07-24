@@ -5,4 +5,7 @@ class Project < ApplicationRecord
   belongs_to :project_manager
   has_many :videos
   has_many :notifications
+
+  validates :title, presence: true
+  validates :raw_footage_url, presence: true
 end
