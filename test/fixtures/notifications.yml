@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyString
+  read: false
+  delivered_at: 2025-07-24 11:31:10
+  project: one
+  project_manager: one
+
+two:
+  message: MyString
+  read: false
+  delivered_at: 2025-07-24 11:31:10
+  project: two
+  project_manager: two
