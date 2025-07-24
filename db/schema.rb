@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_24_193210) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_24_211507) do
   create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -50,6 +50,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_24_193210) do
     t.index ["project_manager_id"], name: "index_projects_on_project_manager_id"
   end
 
+  create_table "video_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "format"
+    t.decimal "price", precision: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "videos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.decimal "price", precision: 10
@@ -58,7 +66,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_24_193210) do
     t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "video_type_id", null: false
     t.index ["project_id"], name: "index_videos_on_project_id"
+    t.index ["video_type_id"], name: "index_videos_on_video_type_id"
   end
 
   add_foreign_key "notifications", "project_managers"
@@ -66,4 +76,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_24_193210) do
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "project_managers"
   add_foreign_key "videos", "projects"
+  add_foreign_key "videos", "video_types"
 end
