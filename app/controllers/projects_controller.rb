@@ -8,7 +8,6 @@ class ProjectsController < ApplicationController
     @video_types = VideoType.all
 
     if session[:project_data]
-      binding.irb
       @project.title = session[:project_data]["title"]
       @project.raw_footage_url = session[:project_data]["raw_footage_url"]
       @selected_video_type_ids = session[:project_data]["video_type_ids"] || []
@@ -23,14 +22,16 @@ class ProjectsController < ApplicationController
       session.delete(:project_data)
     end
     binding.irb
-    @project = current_client.projects.build(project_params)
+    @project = current_client.projects.build(project_params.except("video_type_ids"))
     @project.status = "in_progress"
-    @project.pm = ProjectManager.first # default PM
-
+    @project.project_manager = ProjectManager.first # default PM
+    binding.irb
     if @project.save
-      video_ids = project_params[:project][:video_type_ids].reject(&:blank?)
+      binding.irb
+      video_ids = project_params[:video_type_ids].reject(&:blank?)
       video_ids.each do |video_type_id|
         video_type = VideoType.find(video_type_id)
+        binding.irb
         @project.videos.create!(
           title: video_type.name,
           price: video_type.price,
@@ -42,8 +43,9 @@ class ProjectsController < ApplicationController
 
       # Simulate background notification (sync for now)
       Notification.create!(
-        project_manager: @project.pm,
-        message: "New project assigned: #{@project.name}",
+        project_manager: @project.project_manager,
+        project: @project,
+        message: "New project assigned: #{@project.title}",
         delivered_at: Time.current
       )
 
@@ -57,6 +59,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :footage_url, :video_type_ids)
+    params.require(:project).permit(:name, :footage_url)
   end
 end
