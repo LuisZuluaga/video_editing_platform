@@ -18,13 +18,27 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    if session[:project_data]
+      project_params = session[:project_data].with_indifferent_access
+      session.delete(:project_data)
+    end
+    binding.irb
     @project = current_client.projects.build(project_params)
     @project.status = "in_progress"
     @project.pm = ProjectManager.first # default PM
 
     if @project.save
-      video_ids = params[:project][:video_ids].reject(&:blank?)
-      @project.videos << Video.find(video_ids)
+      video_ids = project_params[:project][:video_type_ids].reject(&:blank?)
+      video_ids.each do |video_type_id|
+        video_type = VideoType.find(video_type_id)
+        @project.videos.create!(
+          title: video_type.name,
+          price: video_type.price,
+          format: video_type.format,
+          video_type: video_type,
+          notes: "Video created from type #{video_type.name}"
+        )
+      end
 
       # Simulate background notification (sync for now)
       Notification.create!(

@@ -13,7 +13,7 @@
 
 <%= link_to "Want to change? Go Back", new_project_path, class: "btn" %>
 
-<%= form_with url: new_project_path, method: :post do |f| %>
+<%= form_with url: projects_path, method: :post, local: true do |f| %>
   <%= label_tag :card_number, "Card Number" %>
   <%= text_field_tag :card_number %><br>
 
