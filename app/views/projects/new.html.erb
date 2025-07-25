@@ -1,4 +1,4 @@
-<h1>Order a New Video Project</h1>
+<h1>New Video Project</h1>
 
 <%= form_with model: @project, local: true do |f| %>
   <div>
@@ -13,32 +13,21 @@
 
   <h3 style="margin-top: 20px;">Select Video Types</h3>
   <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-    <% @videos.each do |video| %>
+    <% @video_types.each do |video| %>
       <div style="border: 1px solid #ccc; padding: 12px; width: 250px;">
-        <strong><%= video.format %></strong><br>
-        <p><%= video.description %></p>
-        <p><strong>Price:</strong> $<%= video.price %></p>
+        <h4><%= video.name %></h4>
+        <p>Format: <%= video.format %></p><br>
+        <p>Price: <strong>$<%= video.price %></strong></p>
         <label>
-          <%= check_box_tag "project[video_ids][]", video.id %> Add this video
+          <%= check_box_tag "project[video_ids][]", video.id, @selected_video_type_ids.include?(video.id.to_s) %>
+          Add this video
         </label>
       </div>
     <% end %>
   </div>
 
-  <!-- Payment Section (Simulated) -->
-  <div style="margin-top: 30px;">
-    <h3>Payment Information</h3>
-    <p>This is a simulation. No real payment is processed.</p>
-
-    <label>Card Number (simulated)</label><br>
-    <input type="text" placeholder="1234 5678 9012 3456"><br>
-
-    <p style="margin-top: 10px;">
-      <strong>Total will be calculated on the server after submission.</strong>
-    </p>
-  </div>
-
   <div style="margin-top: 20px;">
-    <%= f.submit "Pay and Submit Project" %>
+    <%= f.submit "Go to Payment" %>
   </div>
 <% end %>
+

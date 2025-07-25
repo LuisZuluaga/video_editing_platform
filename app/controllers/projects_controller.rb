@@ -5,7 +5,15 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @videos = Video.all
+    @video_types = VideoType.all
+
+    if session[:project_data]
+      @project.name = session[:project_data]["name"]
+      @project.raw_footage_url = session[:project_data]["raw_footage_url"]
+      @selected_video_type_ids = session[:project_data]["video_type_ids"] || []
+    else
+      @selected_video_type_ids = []
+    end
   end
 
   def create
