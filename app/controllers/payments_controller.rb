@@ -8,10 +8,10 @@ class PaymentsController < ApplicationController
 
     @project_data = session[:project_data]
     if @project_data.nil?
-      redirect_to new_project_path, notice: "Please create a project first."
+      redirect_to new_project_path, alert: "Please create a project first."
       return
     elsif @project_data["video_type_ids"].blank?
-      redirect_to new_project_path, notice: "Please select at least one video type."
+      redirect_to new_project_path, alert: "Please select at least one video type."
       return
     end
 
