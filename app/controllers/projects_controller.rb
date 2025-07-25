@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @video_types = VideoType.all
-
+    
     if session[:project_data]
       @project.title = session[:project_data]["title"]
       @project.raw_footage_url = session[:project_data]["raw_footage_url"]
@@ -21,17 +21,16 @@ class ProjectsController < ApplicationController
       project_params = session[:project_data].with_indifferent_access
       session.delete(:project_data)
     end
-    binding.irb
+
     @project = current_client.projects.build(project_params.except("video_type_ids"))
     @project.status = "in_progress"
     @project.project_manager = ProjectManager.first # default PM
-    binding.irb
+
     if @project.save
-      binding.irb
+
       video_ids = project_params[:video_type_ids].reject(&:blank?)
       video_ids.each do |video_type_id|
         video_type = VideoType.find(video_type_id)
-        binding.irb
         @project.videos.create!(
           title: video_type.name,
           price: video_type.price,

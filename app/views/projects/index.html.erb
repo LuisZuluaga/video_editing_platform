@@ -1,32 +1,34 @@
-<h1>My Projects</h1>
+<div class="container">
+  <h1>My Projects</h1>
 
-<%= link_to "New Project", new_project_path, class: "btn btn-primary mb-3" %>
+  <%= link_to "New Project", new_project_path, class: "btn btn-primary mb-3" %>
 
-<% if @projects.any? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Videos</th>
-        <th>Creation Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @projects.each do |project| %>
+  <% if @projects.any? %>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= project.title %></td>
-          <td><%= project.status.humanize %></td>
-          <td><%= project.videos.count %></td>
-          <td><%= l(project.created_at.to_date) %></td>
-          <td>
-            <%= link_to "Ver", project_path(project), class: "btn btn-sm btn-outline-secondary" %>
-          </td>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Videos</th>
+          <th>Creation Date</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>No proyects yet. Create one now!</p>
-<% end %>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.title %></td>
+            <td><%= project.status.humanize %></td>
+            <td><%= project.videos.count %></td>
+            <td><%= l(project.created_at.to_date) %></td>
+            <td>
+              <%= link_to "Ver", project_path(project), class: "btn btn-sm btn-outline-secondary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No proyects yet. Create one now!</p>
+  <% end %>
+</div>
