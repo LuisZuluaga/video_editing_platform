@@ -1,14 +1,14 @@
 <h1>New Video Project</h1>
 
-<%= form_with model: @project, local: true do |f| %>
+<%= form_with model: @project, url: new_payment_path, method: :get, local: true do |f| %>
   <div>
-    <%= f.label :name, "Project Name" %><br>
-    <%= f.text_field :name %>
+    <%= label_tag :name, "Project Name" %><br>
+    <%= text_field_tag "project[title]" %>
   </div>
 
   <div style="margin-top: 10px;">
-    <%= f.label :footage_url, "Link to Raw Footage" %><br>
-    <%= f.text_field :footage_url %>
+    <%= label_tag :footage_url, "Link to Raw Footage" %><br>
+    <%= text_field_tag "project[raw_footage_url]" %>
   </div>
 
   <h3 style="margin-top: 20px;">Select Video Types</h3>
@@ -19,15 +19,14 @@
         <p>Format: <%= video.format %></p><br>
         <p>Price: <strong>$<%= video.price %></strong></p>
         <label>
-          <%= check_box_tag "project[video_ids][]", video.id, @selected_video_type_ids.include?(video.id.to_s) %>
-          Add this video
+          <%= check_box_tag "project[video_type_ids][]", video.id %> Add this video
         </label>
       </div>
     <% end %>
   </div>
 
   <div style="margin-top: 20px;">
-    <%= f.submit "Go to Payment" %>
+    <%= submit_tag "Continue to Payment" %>
   </div>
 <% end %>
 

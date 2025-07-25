@@ -1,0 +1,27 @@
+<h2>Confirm & Pay</h2>
+
+<p><strong>Project name:</strong> <%= session[:project_data]["name"] %></p>
+<p><strong>Raw footage link:</strong> <%= session[:project_data]["raw_footage_url"] %></p>
+
+<ul>
+  <% @selected_videos.each do |vt| %>
+    <li><%= vt.name %> - $<%= vt.price %></li>
+  <% end %>
+</ul>
+
+<p><strong>Total: </strong> $<%= @total_price %></p>
+
+<%= link_to "Want to change? Go Back", new_project_path, class: "btn" %>
+
+<%= form_with url: new_project_path, method: :post do |f| %>
+  <%= label_tag :card_number, "Card Number" %>
+  <%= text_field_tag :card_number %><br>
+
+  <%= label_tag :expiration, "Expiration Date" %>
+  <%= text_field_tag :expiration %><br>
+
+  <%= label_tag :cvv, "CVV" %>
+  <%= text_field_tag :cvv %><br>
+
+  <%= submit_tag "Pay & Create Project" %>
+<% end %>

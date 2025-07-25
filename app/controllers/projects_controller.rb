@@ -8,7 +8,8 @@ class ProjectsController < ApplicationController
     @video_types = VideoType.all
 
     if session[:project_data]
-      @project.name = session[:project_data]["name"]
+      binding.irb
+      @project.title = session[:project_data]["title"]
       @project.raw_footage_url = session[:project_data]["raw_footage_url"]
       @selected_video_type_ids = session[:project_data]["video_type_ids"] || []
     else
@@ -42,6 +43,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :footage_url)
+    params.require(:project).permit(:name, :footage_url, :video_type_ids)
   end
 end
