@@ -4,13 +4,15 @@
   <p style="margin-top: 10px;"><strong>Project name:</strong> <%= session[:project_data]["title"] %></p>
   <p style="margin-top: 10px;"><strong>Raw footage link:</strong> <%= session[:project_data]["raw_footage_url"] %></p>
 
-  <ul>
-    <% @selected_videos.each do |vt| %>
-      <li><%= vt.name %> - $<%= vt.price %></li>
+  <div style="margin-top: 20px;">
+    <% @selected_videos.each do |video| %>
+      <div style="border: 1px solid #ccc; padding: 12px; width: 250px;">
+        <p><%= video.name %> - <strong>$<%= video.price %></strong></p>
+      </div>
     <% end %>
-  </ul>
+  </div>
 
-  <p><strong>Total: </strong> $<%= @total_price %></p>
+  <h3 style="margin-top: 10px;"><strong>Total: </strong> $<%= @total_price %></h3>
 
   <%= link_to "Want to change? Go Back", new_project_path, class: "btn" %>
 
