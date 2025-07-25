@@ -1,7 +1,7 @@
-<h2>Confirm & Pay</h2>
+<h2>Confirm And Pay</h2>
 
-<p><strong>Project name:</strong> <%= session[:project_data]["name"] %></p>
-<p><strong>Raw footage link:</strong> <%= session[:project_data]["raw_footage_url"] %></p>
+<p style="margin-top: 10px;"><strong>Project name:</strong> <%= session[:project_data]["title"] %></p>
+<p style="margin-top: 10px;"><strong>Raw footage link:</strong> <%= session[:project_data]["raw_footage_url"] %></p>
 
 <ul>
   <% @selected_videos.each do |vt| %>
