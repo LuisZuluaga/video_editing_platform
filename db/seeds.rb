@@ -9,6 +9,8 @@
 #   end
 
 # db/seeds.rb
+# 
+puts "Seeding database..."
 
 video_types = [
   { name: "Highlight Reel", format: "MP4 (Horizontal)", price: 150.00 },
@@ -38,4 +40,5 @@ ProjectManager.find_or_create_by!(email: "project@test.com") do |pm|
   pm.name = "Project Manager"
 end
 
+puts "Database seeded successfully!"
 
