@@ -18,13 +18,28 @@
 
   <%= form_with url: projects_path, method: :post, local: true do |f| %>
     <%= label_tag :card_number, "Card Number" %>
-    <%= text_field_tag :card_number %><br>
+    <%= text_field_tag :card_number, nil,
+      required: true,
+      pattern: "\\d{16}",
+      maxlength: 16,
+      inputmode: "numeric",
+      placeholder: "1234567812345678" %><br>
 
-    <%= label_tag :expiration, "Expiration Date" %>
-    <%= text_field_tag :expiration %><br>
+    <%= label_tag :expiration, "Expiration Date (MMYY)" %>
+    <%= text_field_tag :expiration, nil,
+      required: true,
+      pattern: "\\d{4}",
+      maxlength: 4,
+      inputmode: "numeric",
+      placeholder: "MMYY" %><br>
 
     <%= label_tag :cvv, "CVV" %>
-    <%= text_field_tag :cvv %><br>
+    <%= text_field_tag :cvv, nil,
+      required: true,
+      pattern: "\\d{3}",
+      maxlength: 3,
+      inputmode: "numeric",
+      placeholder: "123" %><br>
 
     <%= submit_tag "Pay & Create Project" %>
   <% end %>
