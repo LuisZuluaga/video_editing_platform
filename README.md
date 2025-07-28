@@ -4,7 +4,7 @@
 🚀 Running the App Locally
 1. Clone the repo
 ```
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/LuisZuluaga/video_editing_platform.git
 cd your-repo
 ```
 2. Install dependencies
