@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
     @projects = current_client.projects.includes(:videos).order(created_at: :desc)
   end
 
+  def show
+    @project = current_client.projects.includes(:videos, :project_manager).find(params[:id])
+  end
+
   def new
     @project = Project.new
     @video_types = VideoType.all

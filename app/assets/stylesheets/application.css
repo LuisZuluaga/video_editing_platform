@@ -146,3 +146,107 @@ button:hover {
 .back-link:hover {
   text-decoration: underline;
 }
+
+/* Container and layout */
+.projects-container {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.projects-title {
+  text-align: center;
+  color: #2c3e50;
+}
+
+.projects-actions {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.projects-table th,
+.projects-table td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.projects-table thead {
+  background-color: #f8f9fa;
+}
+
+.projects-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #3490dc;
+  color: white;
+  padding: 8px 14px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background-color: #2779bd;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Empty state */
+.no-projects {
+  text-align: center;
+  margin-top: 40px;
+  color: #888;
+}
+
+/* Container */
+.project-details-container {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+  color: #2c3e50;
+}
+
+.project-details-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Section block */
+.project-section {
+  margin-bottom: 25px;
+}
+
+/* List of videos */
+.video-list {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.video-list li {
+  margin-bottom: 10px;
+}
+
+/* Back button */
+.project-back-btn {
+  text-align: left;
+}

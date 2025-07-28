@@ -1,0 +1,47 @@
+<div class="project-details-container">
+  <h1 class="project-details-title">Project Details</h1>
+
+  <div class="project-section">
+    <strong>Title:</strong>
+    <p><%= @project.title %></p>
+  </div>
+
+  <div class="project-section">
+    <strong>Raw Footage URL:</strong>
+    <p>
+      <%= link_to @project.raw_footage_url, @project.raw_footage_url, target: "_blank" %>
+    </p>
+  </div>
+
+  <div class="project-section">
+    <strong>Selected Videos:</strong>
+    <% if @project.videos.any? %>
+      <table class="projects-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Format</th>
+          <th>Price</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.videos.each do |video| %>
+          <tr>
+            <td><%= video.title %></td>
+            <td><%= video.format %></td>
+            <td><%= video.price %></td>
+            <td><%= video.status.humanize %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="no-projects">No projects in this project</p>
+  <% end %>
+  </div>
+
+  <div class="project-back-btn">
+    <%= link_to 'Back to Projects', projects_path, class: 'btn-secondary' %>
+  </div>
+</div>
