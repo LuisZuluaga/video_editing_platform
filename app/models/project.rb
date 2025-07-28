@@ -4,7 +4,7 @@ class Project < ApplicationRecord
   belongs_to :client
   belongs_to :project_manager
   has_many :videos
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   validates :title, presence: true
   validates :raw_footage_url, presence: true
