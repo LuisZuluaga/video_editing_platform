@@ -40,13 +40,7 @@ class ProjectsController < ApplicationController
         )
       end
 
-      # Simulate background notification (sync for now)
-      Notification.create!(
-        project_manager: @project.project_manager,
-        project: @project,
-        message: "New project assigned: #{@project.title}",
-        delivered_at: Time.current
-      )
+      ProjectManagerNotificationJob.perform_later(@project.id)
 
       redirect_to projects_path, notice: "Project created and in progress!"
     else
