@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_24_211507) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_28_123046) do
   create_table "clients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_24_211507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "video_type_id", null: false
+    t.string "status"
     t.index ["project_id"], name: "index_videos_on_project_id"
     t.index ["video_type_id"], name: "index_videos_on_video_type_id"
   end

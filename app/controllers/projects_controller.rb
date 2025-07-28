@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
           title: video_type.name,
           price: video_type.price,
           format: video_type.format,
+          status: "queued",
           video_type: video_type,
           notes: "Video created from type #{video_type.name}"
         )
