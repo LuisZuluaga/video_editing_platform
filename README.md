@@ -43,3 +43,5 @@ If you're using Sidekiq, run in a separate terminal:
 ```
 bundle exec sidekiq
 ```
+## Database Diagram
+<img width="1556" height="398" alt="Screenshot 2025-07-28 at 9 22 51 AM" src="https://github.com/user-attachments/assets/ae643490-38ca-4896-a767-5724766b8119" />
