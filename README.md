@@ -1,24 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Running Locally
+🚀 Running the App Locally
+1. Clone the repo
+```
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+2. Install dependencies
+```
+bundle install
+```
+3. Start Redis (required for background jobs with ActiveJob/Sidekiq)
 
-Things you may want to cover:
+# macOS (Homebrew)
+```
+brew services start redis
+```
+# Linux (Ubuntu)
+```
+sudo service redis-server start
+```
+To check if Redis is running:
 
-* Ruby version
+```
+redis-cli ping
+```
 
-* System dependencies
+# => PONG
+4. Set up the database
+```
+bin/rails db:create db:migrate db:seed
+```
 
-* Configuration
+5. Start the Rails server
+```
+rails server
+```
+6. Start the background job processor (Sidekiq or default async)
+If you're using Sidekiq, run in a separate terminal:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle exec sidekiq
+```

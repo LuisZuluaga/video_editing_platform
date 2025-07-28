@@ -10,8 +10,6 @@
 
 # db/seeds.rb
 
-puts "Seeding VideoTypes..."
-
 video_types = [
   { name: "Highlight Reel", format: "MP4 (Horizontal)", price: 150.00 },
   { name: "Full Documentary Edit", format: "MOV (Horizontal)", price: 300.00 },
@@ -26,4 +24,18 @@ video_types.each do |vt|
   end
 end
 
-puts "✅ Done seeding VideoTypes!"
+clients = [
+  { name: "Client A", email: "a@test.com" },
+  { name: "Client B", email: "b@test.com" } ]
+
+clients.each do |client_data|
+  Client.find_or_create_by!(email: client_data[:email]) do |client|
+    client.name = client_data[:name]
+  end
+end
+
+ProjectManager.find_or_create_by!(email: "project@test.com") do |pm|
+  pm.name = "Project Manager"
+end
+
+
