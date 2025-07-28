@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    if session[:project_data] && permitted_project_params.nil?
+    if session[:project_data] && params[:project].nil?
       project_params = session[:project_data].with_indifferent_access
       session.delete(:project_data)
     else
