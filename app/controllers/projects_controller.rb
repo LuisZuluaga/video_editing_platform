@@ -21,9 +21,11 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    if session[:project_data]
+    if session[:project_data] && permitted_project_params.nil?
       project_params = session[:project_data].with_indifferent_access
       session.delete(:project_data)
+    else
+      project_params = permitted_project_params.to_h.with_indifferent_access
     end
 
     @project = current_client.projects.build(project_params.except("video_type_ids"))
@@ -56,7 +58,7 @@ class ProjectsController < ApplicationController
 
   private
 
-  def project_params
-    params.require(:project).permit(:name, :footage_url)
+  def permitted_project_params
+    params.require(:project).permit(:title, :raw_footage_url, video_type_ids: [])
   end
 end
